@@ -1,0 +1,64 @@
+:root {
+  --medida: 94vw;
+  font-size: calc(var(--medida) / 40);
+}
+
+@media (min-aspect-ratio: 1 / 1) {
+  :root {
+    --medida: 94svh;
+    font-size: calc(var(--medida) / 40);
+  }
+}
+
+* {
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: calc(var(--medida) / 30), 0;
+
+  height: 100svh;
+
+  font-family: system-ui, sans, monospace;
+  text-align: center;
+
+	background-color: rgb(60, 54, 53);
+  color: antiquewhite;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header, main, footer {
+  flex: 0 1 auto;
+}
+
+main {
+  flex-grow: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.contenedor {
+  width: var(--medida);
+  height: var(--medida);
+
+  margin: 0 auto;
+
+  position: relative;
+
+  flex-grow: 0.2;
+}
+
+.contenedor__sketch {
+  width: var(--medida);
+  height: var(--medida);
+
+  position: absolute;
+  top: 0;
+}
