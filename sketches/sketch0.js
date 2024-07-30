@@ -15,13 +15,15 @@
 // https://editor.p5js.org/caminofarol/sketches/r609C2cs
 //
 // ,,,es horrible,,,
-// con sketches muy grandes se hace imposible estar escribiendo "p." a cada rato.
+// odio estar escribiendo "p." a cada rato, me quita la fluidez de escribir p5 normal.
+// y se hace increiblemente tedioso agregar nuevas instancias a un sketch que ya existe,
+// sobretodo si son muchas lineas de codigo.
 //
 // ,,,por eso,,,
-// inventé este atajo que permite trabajar en al menos un sketch sin estar repitiendo,
+// inventé este atajo que permite trabajar en al menos un sketch sin estar repitiendo p,
 // pero solo funciona una vez. todos los sketches extras seguirán necesitando "p." buu
 //
-// ,,,igualmente,,,
+// ,,,de todos modos,,,
 // está genial aplicarlo en el codigo principal (por ejemplo un juegito con objetos
 // que tenga muchas lineas). y luego se pueden agregar mas sketches en modulos aparte.
 // lo ideal es que sean sketches pequeños (pq "p."), como mini lienzos secundarios,
@@ -43,14 +45,15 @@
 // no habia visto nada parecido. escribi todo yo, con (99%) ayuda de chat gpt.
 // https://chatgpt.com/share/1ab6d4b8-409d-43ad-ae89-f83526ac7d2d
 //
-// tengo claro que solo es un parche, y por ahora me basta con que no se rompa.
-// ojalá algún dia exista una solución "oficial". estaría lindo pq le daría soporte
-// a muchas formas de uso posible q eran casi imposibles de implementar.
+// tengo claro que solo es un parche. por ahora me basta con que sea comodo y no se rompa.
+// ojalá algún dia exista algo "oficial". estaría lindo pq tendría soporte a largo plazo.
 // 
-// si o si es una mejor solucion que las instancias multiples "normales",
-// pero me sigue pareciendo peor que trabajar con iframes. (depende del caso).
-// igual... los iframes tampoco son perfectos, tienen varios problemitas.
-// en otro tutorial los explicare con detalle
+// si o si es una mejora cosiderable respecto a las instancias multiples "normales",
+// pero me sigue pareciendo mas recomendable trabajar con iframes. pero, como todo,
+// depende del caso... los iframes tampoco son perfectos. consumen mucho mas recursos
+// y para comunicarse entre los sketchs se necesita postMessage, q lo hace verboso.
+// en otro tutorial explicare iframes con detalle. pq ambas son soluciones utiles
+// y a veces lo mejor seria mezclar un poco de cada una.
 //
 // escribí el código pa usarlo en ideas que tengo ahora mismo, no pa que sea perfecto. 
 // cualquier retroalimentación me sirve muchísimoooo. mi ig es: @sepintangatos
@@ -58,15 +61,21 @@
 // al dominio publico - cc0 - no es necesario citar autoria
 //////////////////////////////
 
-// se importan cosas para traer cosas desde de otros modulos
-import Cosa from "./clases/Cosa.js"; // experimento para usar clases
+// la importacion sirve para traer cosas desde de otros modulos
+import Cosa from "../clases/Cosa.js"; // experimento para usar clases
 
-// se exportan cosas para que otros modulos las puedan importar 
+// la exportacion sirve para que otros modulos puedan importar estas cosas
 export let ocultarSketch1 = false; // experimento para conectarse con sketch1.js
 
 // el código principal lo exporto como una funcion flecha que anida todo adentro,
-// y q se la importa desde un modulo anterior (desde donde se crean las instancias).
+// y q se la importa desde el modulo main.js (desde donde se crean las instancias).
 // no es 100% necesario q sea asi, pero sí muy recomendable para mantener ordenado
+
+// la palabra clave default sirve para que en el import se pueda escribir un nombre generico
+// por ejemplo: import cualquierNombre from "../clases/Cosa.js"; // (permite mayor flexibilidad)
+// a diferencia de no usarlo, q tiene que ser exacto: import { Cosa } from "../clases/Cosa.js";
+// solo hay un default por modulo. se pueden exportar otras cosas aparte (como ocultarSketch1).
+// yo lo pongo casi q por costumbre (por ejemplo ahora no estaria siendo muy util)
 
 // la constante "sketch0" almacena una funcion anonima (flecha). esto permite que:
 // 
@@ -82,12 +91,13 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia del s
   // la referencia a esta función flecha será recibida por "new p5(sketch0);" pero ojo:
   // no es en main.js donde será ejecutada, sino que dentro del nuevo objeto "p5".
   // entonces esa "p" no se le pasamos en "nuestro" código como parametro, sino que 
-  // la recibimos desde "afuera" (porque sí, porque asi esta hecho p5 por dentro)
+  // la recibimos desde "afuera" (porque sí, porque asi esta hecho p5 por dentro).
+  // "p" es por convencion. podria ser cualquier otro nombre.
 
 
   // ___________________________________________________________________________________
 
-  const id = 0; // identificador del sketch. por comodidad. para usar en getElemtById
+  const id = 0; // identificador del sketch. por comodidad. se usa en .parent y en .getElementById
   let pruebaDeObjeto; // para experimento, no se usa en nada serio
   let bloquearClick = false; // para validacion en touchEnded
   
@@ -99,9 +109,9 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia del s
   // se tienen que escribir con "p." y se tienen que guardar como funciones anonimas
   p.setup = () => {
     
-    const res = 500; // fraccionamiento interno. editable. ir probando fps
+    let res = 500; // editable. resolucion interna (fraccionamiento)
     const canvas = p.createCanvas(res, res); // # createCanvas necesita "p."
-    canvas.parent("contenedor__sketch--" + id); // para meterlo en el div contenedor
+    canvas.parent("contenedor__sketch--" + id); // para insertarlo en el div contenedor
     canvas.style('user-select', 'none'); // para quitar seleccion texto con doble click (opcional)
     canvas.style('touch-action', 'manipulation'); // para quitar zoom con doble touch (opcional)
     
@@ -111,23 +121,31 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia del s
     // # ESTE ESSS !!! MI TRUCO 100% REAL NO FAKE:
     // ojo. se tiene que hacer despues de createCanvas
     // 
+    //    ------------------------
+    //
+    //    QUIERO AGREGAR ALGUNA SOLUCION PARA ESCUCHAR LOS CAMBIOS EN LOS VARLORES DE P
+    //    ASI, EN EL DRAW SE ACTUALIZARÁN AUTOMATICAMENTE (POR AHORA LO HICE A MANO).
+    //    CREO Q SON LOS PROXYS ESO Q ANDO PENSANDO, PERO PA MAÑANA. BUENAS NOXYS
+    //    https://youtu.be/7njrLMJgDtQ?si=3JAYjxF6pBy-8LRC
+    //
+    //    ------------------------
+    //
     // asignar manualmente las palabras reservadas (de p5) al contexto global (objeto window)
     for (let prop in p) { // recorre las propiedades de "p". por ejemplo: height, rect(), PI
       
       // por cada palabra vemos si es una funcion o no
       if (typeof p[prop] === "function") { // # en caso de serlo, hay que "darle contexto"
-        window[prop] = p[prop].bind(p); // bind es de js más avanzado, sobre scope en .this
+        window[prop] = p[prop].bind(p); // (bind es de js más avanzado, sobre scope en .this)
       }
       else {
-        window[prop] = p[prop]; // # en caso que no lo sea, se agrega directamente
-        // AQUI QUIERO AGREGAR ALGUNA SOLUCION PARA SEGUIR LOS CAMBIOS EN LOS VARLORES DE P
-        // CREO Q SON LOS PROXYS ESO Q ANDO PENSANDO, PERO PA MAÑANA. BUENAS NOXYS
+        window[prop] = p[prop]; // # en caso que no serlo, se asigna directamente
       }
     }
     //
-    // # estamos accediendo directo al objeto window, como se hace normalmente cuando
-    // se tratara de un solo sketch. por eso no se puede repetir este truco dos veces.
-    // los demas sketches crean su propia instancia por lo q tienen nombres independiente.
+    // # estamos accediendo a las propiedades deñ objeto window, igual q se hace cuando
+    // se trabaja con un solo sketch. por eso, no se puede repetir este truco dos veces.
+    // los demas sketches crean su propio objeto dentro de window, lo que los diferencia
+    // de las propiedades globales (asi se mantienen los nombres independientes)
     // 
     // ,,,info extra,,,
     // el alcance de nombres es un problema muy frecuente en la computacion a nivel general.
@@ -158,8 +176,8 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia del s
 
     // experimento de usar clases
     pruebaDeObjeto = new Cosa("hola", "wachin"); // parametros al constructor
-    pruebaDeObjeto.consolameEsta("jaja saludos"); // parametros a un metodo
-  };
+    pruebaDeObjeto.consolameEsta("jaja", "saludos"); // parametros al metodo1
+  }
   
 
   // ___________________________________________________________________________________
@@ -167,12 +185,13 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia del s
   // # draw es otra funcion propia de p5, y está en el nivel global
   p.draw = () => { // (asi que "p." y funcion anonima)
 
+    // propiedades q necesitan actualizacion constante:
     // solucion provisional pq estoy cansado jefe. tengo q estudiar sobre proxy
-    // para lograr hacer esto automaticamente desde el forIn edl setup
-    let mouseIsPressed = p.mouseIsPressed;
-    let frameCount = p.frameCount;
-    let mouseX = p.mouseX;
-    let mouseY = p.mouseY;
+    // para lograr hacer esto automaticamente (y q perdure) con el truco en el setup
+    window['mouseIsPressed'] = p['mouseIsPressed'];
+    window['frameCount'] = p['frameCount'];
+    window['mouseX'] = p['mouseX'];
+    window['mouseY'] = p['mouseY'];
 
     //////////////////////////////
     // TODO LO DEMÁS DE ESTE ARCHIVO NO FORMA PARTE DEL TUTORIAL
@@ -194,37 +213,35 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia del s
         cos((frameCount - 5 * i) / 25 * (i / 97)) * height / 3,
         (height / 50) * i
       );
-    }    
+    }
 
     // boton
     if (
-      mouseX > width * 0.073 &&
-      mouseX < width * 0.203 &&
-      mouseY > height * 0.112 &&
-      mouseY < height * 0.166
+      mouseX > width * 0.075 &&
+      mouseX < width * 0.205 &&
+      mouseY > height * 0.881 &&
+      mouseY < height * 0.934
     ) {
-      cursor(HAND);
-      fill((sin((frameCount - 30) / 51) + 2) * 125, 200, 150);
-      if (mouseIsPressed) {
-        fill((sin((frameCount - 30) / 51) + 2) * 125, 150, 100);
-      }
+      // cursor(HAND); // esto es mas complicado de resolver. imagino un 3er sketch para la ui
+      if (mouseIsPressed) fill((frameCount % 255) * 0.8, (255 - frameCount % 255) * 0.8, 119);
+      else fill((frameCount % 255) * 1.1, (255 - frameCount % 255) * 1.1, 163);
     }
     else {
-      cursor(ARROW);
-      fill((sin((frameCount - 30) / 51) + 2) * 125, 180, 130);
+      // cursor(ARROW); // ver comentario anterior
+      fill(frameCount % 255, 255 - frameCount % 255, 148.75);
     }
-    rect(-width * 0.36, -height * 0.362, width / 8, height / 20);
+    rect(-width * 0.36, height * 0.408, width / 8, height / 20);
 
-    // texto 
+    // texto
     push();
     fill(255);
     noStroke();
-    text("click!", -width * 0.36, -height * 0.36); // arriba
+    text("click!", -width * 0.36, height * 0.41); // arriba
     text("y   \notro", 0, height * 0.36); // abajo
-    pop();
-
+    
     // experimento de usar clases
-    if (ocultarSketch1) pruebaDeObjeto.displayMinimo(frameCount);
+    if (ocultarSketch1) pruebaDeObjeto.displayCualquierCosa();
+    pop();
   }
 
 
@@ -232,20 +249,21 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia del s
 
   // # touchEnded es una funcion propia de p5 (y es global)
   p.touchEnded = () => {
-    console.log("E___________");
 
-    // evitar doble touch
-    // if (bloquearClick) return;
-    // bloquearClick = true;
-    // setTimeout(function(){
-    //   bloquearClick = false;
-    // }, 200);
+    // click derecho
+
+    // evitar doble accion
+    if (bloquearClick) return;
+    bloquearClick = true;
+    setTimeout(function() {
+      bloquearClick = false;
+    }, 200);
     
-    if ( // solucion provisional
-      p.mouseX > width * 0.073 &&
-      p.mouseX < width * 0.203 &&
-      p.mouseY > height * 0.112 &&
-      p.mouseY < height * 0.166
+    if (
+      mouseX > width * 0.075 &&
+      mouseX < width * 0.205 &&
+      mouseY > height * 0.881 &&
+      mouseY < height * 0.934
     ) {
       console.log("click validado! ___ocultarSketch1 = " + ocultarSketch1);
       if (ocultarSketch1) ocultarSketch1 = false;
