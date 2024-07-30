@@ -1,12 +1,11 @@
 :root {
   --medida: 94vw;
-  font-size: calc(var(--medida) / 40);
+  font-size: calc(var(--medida) / 36);
 }
 
 @media (min-aspect-ratio: 1 / 1) {
   :root {
     --medida: 94svh;
-    font-size: calc(var(--medida) / 40);
   }
 }
 
