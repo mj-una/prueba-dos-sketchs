@@ -12,34 +12,30 @@ export default class Cosa {
  
   consolameEsta(_c) {
 
-    // a ver como funcionan las cosas de p5 aqui
-    let rdm = randomGaussian(50, 3) * HALF_PI; // será 78 aprox 
+    // a ver si funcionan las cosas de p5 aqui ? ? ?
+    let rdm = randomGaussian(50, 0.5) * HALF_PI; // es 78 aprox 
 
+    // usare templates strings (con `backticks`) por comodidad
     console.log(`Prueba: ${this.a} ${this.b}`);
-    console.log(`Prueba: ${rdm}`);
+    console.log(`Prueba: ${rdm}`); // siii, funcionaaa
     console.log(`Prueba: ${_c}`);
   }
 
-  displayMinimo() {
-
-    // para devolver (0, 0) a la esquina sup izq
-    resetMatrix();
-
-    // el mini rectangulo verde :)
-    fill(sin(((frameCount - 10) / 50) + 2) * 80, 200, 105);
-    rect(height / 20, height / 20, height / 28, height / 20);
+  displayMinimo(_frameCount) {
     
-    // esto es muy muy genial. me emosionaaaaa. todo funciona perfecto. 
-    // incluso se puede usar frameCount, q lo declaramos en el draw!!!
+    // firma
+    push();
+    let nums = [2, 5, 0];
+    textSize(height / 30);
+    text(nums[(Math.floor(_frameCount * 0.05)) % 3], width * 0.38, height * 0.38);
+    pop();
+    
+    // esto es muy muy genial! me emozzzionaaaaa! anda perfecto :)
     // lo interesante es que se pueden instanciar clases desde sketch0
     // y usarlas como lo hariamos normalmente, con todas las utilidades
     // de p5. esto no era algo obvio q pasara, pq el objeto window bien
     // podria haber tenido otros comporamientos con el scope de modulos
-    // y/o de clases. entonces se puede hacer un juego complejooooooooo
-    // y agregarle mini sketchs extras para animaciones independientes
-    // o para manejar eventos especiales (p.ej una capa para el touch).
-    // gracias por tanto javascript <3 <3 <3
+    // y/o de clases. entonces sí, se pueden hacer juegos complejosssss
+    // <3 <3 <3 gracias por tanto javascript <3 <3 <3
   }
-
-
 }
