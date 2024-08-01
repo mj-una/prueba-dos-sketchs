@@ -11,9 +11,10 @@ export default class Cosa {
     this.a = _a;
     this.b = _b;
   }
+  
  
   // metodo 1
-  // para probar si funcionan las cosas basicas como .this, parametros y palabras de p5
+  // para probar si funcionan las cosas basicas como propiedades, parametros y palabras de p5
   consolameEsta(_c, _d) {
 
     // a ver si funcionan las cosas de p5 aqui ? ? ?
@@ -24,6 +25,7 @@ export default class Cosa {
     console.log(`Prueba: ${rdm}`); // siii, funcionaaannnnnn
     console.log(`Prueba: ${_c} ${_d}`); // valores por parametros
   }
+
 
   // metodo 2
   // para probar llamandolo desde el draw, cómo integra el dibujo
@@ -39,11 +41,9 @@ export default class Cosa {
     pop();
 
     // firma
-    push();
     let nums = ["2", "5", "O", "2", "5"];
     let posi = Math.floor(map(frameCount % 255, 0, 255, 0, 5));
-    text(nums[posi], width * 0.38, height * 0.41);
-    pop();
+    text(nums[posi], width * 0.38, height * 0.404);
     
     // esto es muy muy genial! me emozzzionaaaaa! anda perfecto :)
     // incluso se puede usar frameCount que lo asignamos en el draw.

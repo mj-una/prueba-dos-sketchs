@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
   <title>prueba</title>
+  <link rel="icon" type="image/x-icon" href="ico/favicon.ico">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,16 +17,78 @@
       <div class="contenedor__sketch" id="contenedor__sketch--0"></div>
       <div class="contenedor__sketch" id="contenedor__sketch--1"></div>
     </div>
+    <div class="texto">
+<pre>
+https://github.com/mj-una/prueba-dos-sketchs/blob/main/sketches/sketch0.js
 
-    <p>
-      tiene un truco para evitar las instancias multiples normales, o los iframes
-      <br>(pero sigo prefiriendo los iframes juejue, lo hice así solo por curiosidad)
-    </p>
+
+ _____   _   _   _____    ___    ___    ___     _     _    
+|_   _| | | | | |_   _|  / _ \  | _ \  |_ _|   /_\   | |   
+  | |   | |_| |   | |   | (_) | |   /   | |   / _ \  | |__ 
+  |_|    \___/    |_|    \___/  |_|_\  |___| /_/ \_\ |____|            
+  
+  
+PARA COLOCAR VARIOS SKETCHES (.js) EN UNA MISMA PÁGINA (.html)
+usando instancias múltiples, pero con un truco para que sea más cómodo
+
+
+esto es lo "normal" que había visto que se hacía:
+https://p5js.org/es/examples/advanced-canvas-rendering-multiple-canvases/
+
+__es horrible__
+odio estar escribiendo "p." en cada palabra, porque quita fluidez (q es lo mas atractivo de p5).
+ademas, se hace increiblemente tedioso agregarle nuevas instancias a un sketch que ya existe,
+y probablemente si queremos agregarle instancias es porque se trata de un proyecto complejo
+que ya tiene muchas lineas de codigo, escritas sin instancias.
+
+__por eso__
+inventé este atajo que permite trabajar en ~al menos un sketch~ sin repitir "p." miles de veces.
+solo funciona ~una~ vez, asique todos los sketches extras q se agreguen necesitan la "p." siosi,
+esta buenisimo para aplicarlo al codigo principal. funciona bien incluso si se trabaja con
+modulos y clases. tambien es compatible con otra solucion (los iframes) q menciono luego.
+
+__usos__
+lo ideal es que las nuevas instancias sean pequeñas (pq "p."), como mini lienzos secundarios.
+supongo q no se suelen usar por lo incomodo y poco intruitivo que es crear o adaptar el codigo,
+pero hay muchísimas aplicaciones en que pueden ser utiles. dejo algunas q se me ocurren:
+- para animaciones independientes, que se carguen, ejecuten y eliminen a medida q es necesario.
+- para sketchs que se puedan recibir de forma asincrona, y se ~sumen~ al hilo principal.
+- para ir cargando distintos niveles de un juego de forma modular, sin colapsar el inicio.
+- para UI basada en colisiones segun colores. y asi tener botones de formas poco convencionales.
+- y uno obvio: para capturar los clicks en toda la pantalla (por fuera del sketch principal).
+
+     |\---/|
+     | ,_, |  ohh, miau. que interesante!
+      \_`_/-..----.
+    ___/ `   ' ,""+ \ 
+   (__...'   __\    |`.___.';
+     (_,...'(_,.`__)/'.....+
+
+
+si o si es una mejora cosiderable respecto a las instancias multiples "normales",
+pero me sigue pareciendo mas recomendable trabajar con iframes. aunque (como todo)
+depende del caso... los iframes no son perfectos, p.ej consumen mucho mas recursos
+y para comunicarse de un sketch a otro se necesita postMessage, y se hace verboso.
+en otro tutorial explicare iframes con detalle, pq ambas son soluciones validas
+y a veces lo mejor es mezclar un poco de cada una.
+
+__ñeeee__
+aun no entiendo todo lo q hice y supongo q se puede mejorar. aprendo mientras lo escribo.
+no habia visto este enfoque antes. lo comparto pq me parece muy util y es fácil de copiar. 
+las partes de js avanzado las escribi casi por completo (99%) con ayuda de chat gpt.
+
+tengo claro que solo es un parche. por ahora me basta con que sea comodo y no se rompa.
+ojalá algún dia exista algo mas ~oficial~. estaría lindo pq tendría soporte a largo plazo.
+cualquier retroalimentación me sirve muchísimoooo. mi ig es: @sepintangatos
+
+
+para usar libremente, no es necesario citar autoria. cc0. al dominio publico
+2.5.O.2.5
+</pre>
+    </div>
   </main>
 
   <footer>
-    para usar libremente - cc0 - no es necesario citar autoria 
-    <address>al dominio publico</address><br>
   </footer>
 
   <script type="module" src="./main.js"></script>

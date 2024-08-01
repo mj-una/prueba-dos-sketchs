@@ -20,7 +20,6 @@ body {
   height: 100svh;
 
   font-family: system-ui, sans, monospace;
-  text-align: center;
 
 	background-color: rgb(60, 54, 53);
   color: antiquewhite;
@@ -40,7 +39,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 .contenedor {
@@ -60,4 +58,13 @@ main {
 
   position: absolute;
   top: 0;
+}
+
+.texto {
+  display: flex;
+  justify-content: center;
+}
+
+pre {
+  font-size: calc(var(--medida) * 0.0188);
 }

@@ -7,17 +7,19 @@
 // según el orden que corresponda. y a su vez, desde esos archivos también
 // se llaman a otros módulos a medida que van siendo necesarios
 
-// un tutorial para aprender sobre ecmascript modules:
-// https://lenguajejs.com/javascript/modulos/que-es-esm/ (son tres paginas,
-// "intro", "exportar", "importar". al inicio y final hay botones pa navegar)
+// °°tutorial. sobre ecmascript modules:
+// https://lenguajejs.com/javascript/modulos/que-es-esm/
+// https://lenguajejs.com/javascript/modulos/export/
+// https://lenguajejs.com/javascript/modulos/import/
+// "¿Qué son los módulos (ESM)?" - paginas por Manz.dev
 
-import { sketch0 } from "./sketches/sketch0.js";
-import { sketch1 } from "./sketches/sketch1.js";
+import { sketch0, listoSketch0 } from "./sketches/sketch0.js";
+import { sketch1, listoSketch1 } from "./sketches/sketch1.js";
 
 
 // ESTAS 2 LINEAS SON FUNDAMENTALESSS
-new p5(sketch0); // estamos creando nuevas instancias del objeto p5
-new p5(sketch1); // y cada sketch tiene la suya propia, independiente
+let sk0 = new p5(sketch0); // estamos creando nuevas instancias del objeto p5
+let sk1 = new p5(sketch1); // y cada sketch tiene la suya propia, independiente
 
 // es importante el orden exacto en que se crean las instancias
 // pq determina cual sketch estara mas "arriba" en el renderizado
@@ -29,6 +31,19 @@ new p5(sketch1); // y cada sketch tiene la suya propia, independiente
 // estos id son los que se capturan desde windowResized con getElementById.
 // el primero siempre es defaultCanvas0, luego se va incrementando el numero
 
+// iniciar
+verificarListos(); // verificar si los sketches estan listos
+function verificarListos() {
+	if (listoSketch0 && listoSketch1) {
+			sk0.loop();
+			sk1.loop();
+	}
+	else {
+			// volver a verificar después de 1 ms
+			setTimeout(verificarListos, 1); // recursion
+	}
+}
+
 
 //////////////////////////////
 // ojo. en la consola aparecerá esta advertencia:
@@ -36,5 +51,5 @@ new p5(sketch1); // y cada sketch tiene la suya propia, independiente
 //  p5.js seems to have been imported multiple times.
 //  Please remove the duplicate import
 //
-// es sobre rendimiento. lo dice pq hay mas de una llamada a la librería,
-// cosa que en este caso está bien, pq hay más de una instancia (ver sketch0.js)
+// es sobre rendimiento, pq es raro q haya mas de una ejecucion de la librería,
+// pero en este caso está bien, pq hay más de una instancia (ver sketch0.js)
