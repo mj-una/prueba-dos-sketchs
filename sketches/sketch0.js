@@ -125,8 +125,8 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
 
     // el truco se ejecuta en el setup, despues de createCanvas, asique cualquier cosa de p5
     // que este "antes" de eso tiene q escribirse como instancia multiple normal (con p.)
-    dejavuBoldCond = p.loadFont("../fonts/DejaVuSansCondensed-Bold.ttf");
-    dejavuBold = p.loadFont("../fonts/DejaVuSans-Bold.ttf");
+    dejavuBoldCond = p.loadFont("./fonts/DejaVuSansCondensed-Bold.ttf");
+    dejavuBold = p.loadFont("./fonts/DejaVuSans-Bold.ttf");
   }
 
 

@@ -20,7 +20,7 @@ export const sketch1 = (p) => { // "p" es la instancia del sketch
 
   // carga fuente
   p.preload = () => {
-    dejavuBoldCond = p.loadFont("../fonts/DejaVuSans-Bold.ttf");
+    dejavuBoldCond = p.loadFont("./fonts/DejaVuSans-Bold.ttf");
   }
 
   // inicio
