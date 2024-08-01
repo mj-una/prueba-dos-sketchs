@@ -67,9 +67,9 @@
 // https://github.com/q5js/q5.js?tab=readme-ov-file#namespace-mode
 //
 // __ñeeee__
-// aun no entiendo todo lo q hice y supongo q se puede mejorar. aprendo mientras lo escribo.
+// aprendo mientras voy avanzando. aun no entiendo todo lo q hice y supongo q se puede mejorar.
 // no habia visto este enfoque antes. lo comparto pq me parece muy util y es fácil de copiar. 
-// las partes de js avanzado las escribi casi por completo (99%) con ayuda de chat gpt.
+// las partes de js duro las escribi casi por completo (99%) con ayuda de chat gpt.
 // https://chatgpt.com/share/1ab6d4b8-409d-43ad-ae89-f83526ac7d2d
 //
 // tengo claro que solo es un parche. por ahora me basta con que sea comodo y no se rompa.
