@@ -246,11 +246,11 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
 
     ////////////////////////////////
     // -----------------------------
-    // ME FALTA UNA SOLUCION PARA ESCUCHAR LOS CAMBIOS EN LOS VARLORES DE P
-    // ASI, EN EL DRAW SE ACTUALIZAN AUTOMATICAMENTE (POR AHORA LO HICE A MANO).
-    // CREO Q SON LOS PROXYS ESO Q ANDO PENSANDO, PERO PA MAÑANA. BUENAS NOXYS
+    // ME FALTA UNA SOLUCION PARA ESCUCHAR LOS CAMBIOS EN LOS VARLORES DE P.
+    // ASI EN EL DRAW SE ACTUALIZAN AUTOMATICAMENTE (POR AHORA LO HICE A MANO).
+    // CREO Q ESO Q ANDO PENSANDO SON LOS PROXYS, PERO PA MAÑANA. BUENAS NOXYS
     //
-    // °°tutorial. una introduccion a las proxies
+    // °°tutorial. una introduccion al objeto proxy
     // https://youtu.be/7njrLMJgDtQ?si=3JAYjxF6pBy-8LRC
     // "Curso JavaScript: 55. Proxies" - videos por Jon Mircha
     //
@@ -267,7 +267,7 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
 
     ////////////////////////////////
     // TODO LO DEMÁS DE ESTE ARCHIVO NO FORMA PARTE DEL TUTORIAL
-    // fue muy poco texto?? en main.js, sketch1.js y Cosa.js hay otro poco jeje
+    // fue muy poco texto?? en main.js, sketch1.js y Cosa.js hay un poco mas jeje
     // 
     // estos dibujitos los inventé para poner una imagen q llame la atención
 
