@@ -138,7 +138,7 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
 
   // ___________________________________________________________________________
 
-  // # setup es otra funcion propia de p5, y está en el nivel global
+  // # setup es otra funcion propia de p5, y está en el nivel global de const sketch0
   p.setup = () => { // (asi que "p." y funcion anonima)
     
     let res = 500; // editable. resolucion interna (fraccionamiento)
@@ -247,8 +247,8 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
 
   // ___________________________________________________________________________
 
-  // # draw es una funcion propia de p5 (y es global)
-  p.draw = () => {
+  // # draw es una funcion propia de p5, y es global en sketck0
+  p.draw = () => { // (asi que "p." y funcion anonima)
 
     ////////////////////////////////
     // -----------------------------
@@ -273,7 +273,7 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
 
     ////////////////////////////////
     // TODO LO DEMÁS DE ESTE ARCHIVO NO FORMA PARTE DEL TUTORIAL
-    // fue muy poco texto?? en main.js, sketch1.js y Cosa.js hay un poco mas jeje
+    // fue muy poco texto?? en main.js, sketch1.js y Cosa.js hay mas jeje
     // 
     // estos dibujitos los inventé para poner una imagen q llame la atención
 
@@ -302,12 +302,12 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
       mouseY > height * 0.881 &&
       mouseY < height * 0.934
     ) {
-      // cursor(HAND); // *es complicado de resolverlo aca. imagino en un 3er sketch para la ui
+      // cursor(HAND); // > es complicado resolverlo aca. imagino en un 3er sketch para la ui.
       if (mouseIsPressed) fill((frameCount % 255) * 0.8, (255 - frameCount % 255) * 0.8, 119);
       else fill((frameCount % 255) * 1.1, (255 - frameCount % 255) * 1.1, 163);
     }
     else {
-      // cursor(ARROW); // *ver comentario anterior
+      // cursor(ARROW); // ...ver comentario anterior <
       fill(frameCount % 255, 255 - frameCount % 255, 148.75);
     }
     rect(-width * 0.36, height * 0.408, width / 8, height / 20);
