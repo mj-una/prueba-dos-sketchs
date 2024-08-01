@@ -234,10 +234,11 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
     noLoop(); // inicia pausado, hasta q desde main.js se active
     frameRate(30); // # un detalle interesante: no es seguro q los draw esten sincronizados.
     // los sketches se ejecutan en procesos separados asi q pueden tener distintas velocidades.
-    // significa q si uno consume muchos recursos, no afecta directamente al rendimiento del otro.
-    // para esta imagen resulta contraproducente (a nivel visual), pero tecnicamente es una ventaja.
-    // en la compu los veo sincronizados, pero en el celu no. supongo q depende de cada navegador.
-    // si se necesita q tengan exactamente el mismo frameRate entonces deberia ser un solo sketch.
+    // significa q: si uno consume muchos recursos, no afecta directamente al rendimiento del otro.
+    // la funcion frameRate establece una velocidad maxima. la vel final puede variar, q esta bien!!
+    // p.ej: en la compu se ven sincronizados y en el celu no. depende del hardware y del navegador.
+    // a nivel visual (para esta imagen) resulta contraproducente, pero tecnicamente es una ventaja.
+    // si se necesita q mantengan exactamente la misma velocidad entonces mejor usar un solo sketch.
     
     // experimento de usar clases
     pruebaDeObjeto = new Cosa("hola", "wachin"); // parametros al constructor
