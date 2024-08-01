@@ -3,13 +3,12 @@
 // ejemplo: https://p5js.org/es/examples/advanced-canvas-rendering-multiple-canvases/
 // (cualquier palabra q sea de p5 tiene que estar escrita con "p.")
 
-// flag que determina visibilidad de este dibujo
-import { ocultarSketch1 } from "./sketch0.js";
+import { ocultarSketch1 } from "./sketch0.js"; // flag de visibilidad. depende de sketch0.js
 
-export let listoSketch1 = false; // para loading
+export let listoSketch1 = false; // para inicio desde main.js
 
 // todo el bloque se exporta en una funcion flecha
-export const sketch1 = (p) => { // "p" es la instancia del sketch
+export const sketch1 = (p) => { // "p" es la instancia de ~este~ sketch
 
   const id = 1; // identificador sketch
   let dejavuBoldCond; // fuente
@@ -17,6 +16,9 @@ export const sketch1 = (p) => { // "p" es la instancia del sketch
   // frecuencia (afecta seno de diametro del circulo)
   // tendria que haber hecho el calculo para sincronizar con frameCount % 255
   let f = 40.78; // me dio flojera pensar. valor hardcodeado viendo la consola
+
+  // otra forma de comunicacion con sketch0.js # canal externo
+  sketch1.getFrameRate = () => p.frameRate();
 
   // carga fuente
   p.preload = () => {
@@ -44,8 +46,8 @@ export const sketch1 = (p) => { // "p" es la instancia del sketch
     p.strokeWeight(p.width / 180);
     p.textAlign(p.CENTER, p.CENTER);
     p.textFont(dejavuBoldCond);
-    p.frameRate(30);
     p.noLoop(); // inicia pausado
+    p.frameRate(30); // vel maxima
   }
 
   // dibujos

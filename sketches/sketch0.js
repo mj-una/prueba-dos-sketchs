@@ -14,19 +14,19 @@
 // esto es lo "normal" que había visto que se hacía:
 // https://p5js.org/es/examples/advanced-canvas-rendering-multiple-canvases/
 //
-// ,,es horrible,,
+// __es horrible__
 // odio estar escribiendo "p." en cada palabra, porque quita fluidez (q es lo mas atractivo de p5).
 // ademas, se hace increiblemente tedioso agregarle nuevas instancias a un sketch que ya existe,
 // y probablemente si queremos agregarle instancias es porque se trata de un proyecto complejo
 // que ya tiene muchas lineas de codigo, escritas sin instancias.
 //
-// ,,por eso,,
+// __por eso__
 // inventé este atajo que permite trabajar en ~al menos un sketch~ sin repitir "p." miles de veces.
 // solo funciona ~una~ vez, asique todos los sketches extras q se agreguen necesitan la "p." siosi,
 // esta buenisimo para aplicarlo al codigo principal. funciona bien incluso si se trabaja con
 // modulos y clases. tambien es compatible con otra solucion (los iframes) q menciono luego.
 //
-// ,,usos,,
+// __usos__
 // lo ideal es que las nuevas instancias sean pequeñas (pq "p."), como mini lienzos secundarios.
 // supongo q no se suelen usar por lo incomodo y poco intruitivo que es crear o adaptar el codigo,
 // pero hay muchísimas aplicaciones en que pueden ser utiles. dejo algunas q se me ocurren:
@@ -44,10 +44,16 @@
 //      (_,...'(_,.`__)/'.....+
 //
 //
+// __mi truco__
+// asigno las palabras reservadas (de esta instancia de p5) al contexto global (objeto window),
+// igual q se hace cuando se trabaja con un solo sketch. por eso no se puede repetir dos veces.
+// los demas sketches crean su propio objeto como propiedad en window, lo que los diferencia
+// de las propiedades globales (y asi mantienen sus nombres independientes)
+//
 // si o si es una mejora cosiderable respecto a las instancias multiples "normales",
 // pero me sigue pareciendo mas recomendable trabajar con iframes. aunque (como todo)
 // depende del caso... los iframes no son perfectos, p.ej consumen mucho mas recursos
-// y para comunicarse de un sketch a otro se necesita postMessage, y se hace verboso.
+// y para comunicarse de un sketch a otro se necesita postMessage, q se hace verboso.
 // en otro tutorial explicare iframes con detalle, pq ambas son soluciones validas
 // y a veces lo mejor es mezclar un poco de cada una.
 //
@@ -60,7 +66,7 @@
 // en la documentacion de q5 (una adaptacion de p5) hay un ejemplo de como se puede usar:
 // https://github.com/q5js/q5.js?tab=readme-ov-file#namespace-mode
 //
-// ,,ñeeee,,
+// __ñeeee__
 // aun no entiendo todo lo q hice y supongo q se puede mejorar. aprendo mientras lo escribo.
 // no habia visto este enfoque antes. lo comparto pq me parece muy util y es fácil de copiar. 
 // las partes de js avanzado las escribi casi por completo (99%) con ayuda de chat gpt.
@@ -78,8 +84,8 @@
 import Cosa from "../clases/Cosa.js"; // experimento para usar clases
 
 // la exportacion sirve para que otros modulos puedan importar estas cosas
-export let listoSketch0 = false; // experimento para manejar sincronizar inicio desde main.js
-export let ocultarSketch1 = false; // experimento para conectarse con sketch1.js (return en draw)
+export let listoSketch0 = false; // experimento para determinar inicio desde main.js
+export let ocultarSketch1 = false; // experimento para ocultar visibilidad de sketch1.js
 
 // el código principal se exporta como una funcion flecha que anida todo adentro,
 // y q se la importa desde el modulo main.js (desde donde se crean las instancias).
@@ -158,11 +164,6 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
         window[prop] = p[prop]; // # en caso que no serlo, se asigna directamente
       }
     }
-    //
-    // # estamos accediendo a las propiedades del objeto window, igual q se hace cuando
-    // se trabaja con un solo sketch. por eso, no se puede repetir este truco dos veces.
-    // los demas sketches crean su propio objeto dentro de window, lo que los diferencia
-    // de las propiedades globales (asi se mantienen los nombres independientes)
     // 
     // °°tutorial. sobre el contexto (scope) de .this:
     // https://www.youtube.com/watch?v=bS71_W_BDFE&list=PLfWyZ8S-XzecAttp3QU-gBBXvMqEZTQXB&index=9
@@ -230,12 +231,17 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
     textAlign(CENTER, CENTER);
     textSize(height / 22);
     textFont(dejavuBoldCond);
-    frameRate(30);
     noLoop(); // inicia pausado, hasta q desde main.js se active
+    frameRate(30); // # un detalle interesante: no es seguro q los draw esten sincronizados.
+    // los sketches se ejecutan en procesos separados asi q pueden tener distintas velocidades.
+    // significa q si uno consume muchos recursos, no afecta directamente al rendimiento del otro.
+    // para esta imagen resulta contraproducente (a nivel visual), pero tecnicamente es una ventaja.
+    // en la compu los veo sincronizados, pero en el celu no. supongo q depende de cada navegador.
+    // si se necesita q tengan exactamente el mismo frameRate entonces deberia ser un solo sketch.
     
     // experimento de usar clases
     pruebaDeObjeto = new Cosa("hola", "wachin"); // parametros al constructor
-    pruebaDeObjeto.consolameEsta("jaja", "saludos"); // parametros al metodo1
+    pruebaDeObjeto.consolameEsta("jaja", "saludos"); // parametros al metodo_A
   }
   
 

@@ -65,10 +65,16 @@ pero hay muchísimas aplicaciones en que pueden ser utiles. dejo algunas q se me
      (_,...'(_,.`__)/'.....+
 
 
+__mi truco__
+asigno las palabras reservadas (de esta instancia de p5) al contexto global (objeto window),
+igual q se hace cuando se trabaja con un solo sketch. por eso no se puede repetir dos veces.
+los demas sketches crean su propio objeto como propiedad en window, lo que los diferencia
+de las propiedades globales (y asi mantienen sus nombres independientes)
+
 si o si es una mejora cosiderable respecto a las instancias multiples "normales",
 pero me sigue pareciendo mas recomendable trabajar con iframes. aunque (como todo)
 depende del caso... los iframes no son perfectos, p.ej consumen mucho mas recursos
-y para comunicarse de un sketch a otro se necesita postMessage, y se hace verboso.
+y para comunicarse de un sketch a otro se necesita postMessage, q se hace verboso.
 en otro tutorial explicare iframes con detalle, pq ambas son soluciones validas
 y a veces lo mejor es mezclar un poco de cada una.
 

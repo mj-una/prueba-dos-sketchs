@@ -5,7 +5,7 @@
 
 export default class Cosa {
 
-  // metodo contructor
+  // metodo_contructor
   // se ejecuta cuando se crea un objeto (en la linea "new Cosa()")
   constructor(_a, _b) {
     this.a = _a;
@@ -13,7 +13,7 @@ export default class Cosa {
   }
   
  
-  // metodo 1
+  // metodo_A
   // para probar si funcionan las cosas basicas como propiedades, parametros y palabras de p5
   consolameEsta(_c, _d) {
 
@@ -27,7 +27,7 @@ export default class Cosa {
   }
 
 
-  // metodo 2
+  // metodo_B
   // para probar llamandolo desde el draw, cómo integra el dibujo
   // aqui tuve un primer problema, q es relacionado a propiedades de p5 q se actualizan en draw
   // como frameCount, q terminé pasandola como parametro. pendiente para resolver luego (proxy?)
