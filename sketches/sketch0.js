@@ -28,7 +28,7 @@
 //
 // __usos__
 // lo ideal es que las nuevas instancias sean pequeñas (pq "p."), como mini lienzos secundarios.
-// supongo q no se suelen usar por lo incomodo y poco intruitivo que es crear o adaptar el codigo,
+// supongo q no se suelen usar por lo incomodo y poco intuitivo que es escribirlas o adaptarlas,
 // pero hay muchísimas aplicaciones en que pueden ser utiles. dejo algunas q se me ocurren:
 // - para animaciones independientes, que se carguen, ejecuten y eliminen a medida q es necesario.
 // - para sketchs que se puedan recibir de forma asincrona, y se ~sumen~ al hilo principal.
@@ -45,8 +45,8 @@
 //
 //
 // __mi truco__
-// asigno las palabras reservadas (de esta instancia de p5) al contexto global (objeto window),
-// igual q se hace cuando se trabaja con un solo sketch. por eso no se puede repetir dos veces.
+// asigno las palabras reservadas (de la instancia de p5) al contexto global (objeto window),
+// igual q pasa cuando se trabaja con un solo sketch. por eso no se puede repetir dos veces.
 // los demas sketches crean su propio objeto como propiedad en window, lo que los diferencia
 // de las propiedades globales (y asi mantienen sus nombres independientes)
 //
@@ -73,7 +73,7 @@
 // https://chatgpt.com/share/1ab6d4b8-409d-43ad-ae89-f83526ac7d2d
 //
 // tengo claro que solo es un parche. por ahora me basta con que sea comodo y no se rompa.
-// ojalá algún dia exista algo mas ~oficial~. estaría lindo pq tendría soporte a largo plazo.
+// ojalá algún dia exista algo ~oficial~. estaría lindo pq tendría soporte a largo plazo.
 // cualquier retroalimentación me sirve muchísimoooo. mi ig es: @sepintangatos
 //
 // para usar libremente, no es necesario citar autoria. cc0. al dominio publico
