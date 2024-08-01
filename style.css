@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "DejaVuSansMono";
+  src: url("./fonts/DejaVuSansMono.ttf") format("truetype");
+}
+
 :root {
   --medida: 94vw;
   font-size: calc(var(--medida) / 36);
@@ -66,5 +71,6 @@ main {
 }
 
 pre {
-  font-size: calc(var(--medida) * 0.0188);
+  font-size: calc(var(--medida) * 0.0171);
+  font-family: "DejaVuSansMono", monospace;
 }
