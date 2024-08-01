@@ -52,10 +52,11 @@ lo ideal es que las nuevas instancias sean pequeñas (pq "p."), como mini lienzo
 supongo q no se suelen usar por lo incomodo y poco intuitivo que es escribirlas o adaptarlas,
 pero hay muchísimas aplicaciones en que pueden ser utiles. dejo algunas q se me ocurren:
 - para animaciones independientes, que se carguen, ejecuten y eliminen a medida q es necesario.
-- para sketchs que se puedan recibir de forma asincrona, y se ~sumen~ al hilo principal.
-- para ir cargando distintos niveles de un juego de forma modular, sin colapsar el inicio.
-- para UI basada en colisiones segun colores. y asi tener botones de formas poco convencionales.
-- y uno obvio: para capturar los clicks en toda la pantalla (por fuera del sketch principal).
+- para sketchs que se puedan recibir de forma asincrona, y se vayan ~sumando~ al hilo principal.
+- para cargar distintos niveles, mapas, escenas de un juego por separado, sin colapsar el inicio.
+- para banners o popups q mantengan exacta la experiencia de sketch, pero con estilos css propios. 
+- para tener botones de formas poco convencionales, con una UI basada en colisiones segun colores.
+- y uno obvio: para capturar los clicks o dibujar por fuera del contenedor principal.
 
      |\---/|
      | ,_, |  ohh, miau. que interesante!
@@ -79,9 +80,9 @@ en otro tutorial explicare iframes con detalle, pq ambas son soluciones validas
 y a veces lo mejor es mezclar un poco de cada una.
 
 __ñeeee__
-aun no entiendo todo lo q hice y supongo q se puede mejorar. aprendo mientras lo escribo.
-no habia visto este enfoque antes. lo comparto pq me parece muy util y es fácil de copiar. 
-las partes de js avanzado las escribi casi por completo (99%) con ayuda de chat gpt.
+aprendo mientras voy avanzando. aun no entiendo todo lo q hice y supongo q se puede mejorar.
+no habia visto este enfoque antes. lo comparto pq me parece muy util, y es fácil de copiar. 
+las partes de js duro las escribi casi por completo (99%) con ayuda de chat gpt.
 
 tengo claro que solo es un parche. por ahora me basta con que sea comodo y no se rompa.
 ojalá algún dia exista algo mas ~oficial~. estaría lindo pq tendría soporte a largo plazo.

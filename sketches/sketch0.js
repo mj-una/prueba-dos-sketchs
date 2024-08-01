@@ -30,11 +30,12 @@
 // lo ideal es que las nuevas instancias sean pequeñas (pq "p."), como mini lienzos secundarios.
 // supongo q no se suelen usar por lo incomodo y poco intuitivo que es escribirlas o adaptarlas,
 // pero hay muchísimas aplicaciones en que pueden ser utiles. dejo algunas q se me ocurren:
-// - para animaciones independientes, que se carguen, ejecuten y eliminen a medida q es necesario.
-// - para sketchs que se puedan recibir de forma asincrona, y se ~sumen~ al hilo principal.
-// - para ir cargando distintos niveles de un juego de forma modular, sin colapsar el inicio.
-// - para UI basada en colisiones segun colores. y asi tener botones de formas poco convencionales.
-// - y uno obvio: para capturar los clicks en toda la pantalla (por fuera del sketch principal).
+// _para animaciones independientes, que se carguen, ejecuten y eliminen a medida q es necesario.
+// _para sketchs que se puedan recibir de forma asincrona, y se vayan ~sumando~ al hilo principal.
+// _para cargar distintos niveles, mapas, escenas de un juego por separado, sin colapsar el inicio.
+// _para banners o popups q mantengan exacta la experiencia de sketch, pero con estilos css propios. 
+// _para tener botones de formas poco convencionales, con una UI basada en colisiones segun colores.
+// _y uno obvio: para capturar los clicks o dibujar por fuera del contenedor principal.
 //
 //      |\---/|
 //      | ,_, |  ohh, miau. que interesante!
