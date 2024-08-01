@@ -231,10 +231,10 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
     textAlign(CENTER, CENTER);
     textSize(height / 22);
     textFont(dejavuBoldCond);
-    noLoop(); // inicia pausado, hasta q desde main.js se active
+    noLoop(); // inicia pausado, hasta q desde main.js se ejecute loop()
     frameRate(30); // # un detalle interesante: no es seguro q los draw esten sincronizados.
-    // los sketches se ejecutan en procesos separados asi q pueden tener distintas velocidades.
-    // significa q: si uno consume muchos recursos, no afecta directamente al rendimiento del otro.
+    // cada sketch se ejecuta en un subproceso separado, asi q pueden tener distintas velocidades.
+    // significa q si uno consume muchos recursos, no afecta directamente al rendimiento del otro.
     // la funcion frameRate establece una velocidad maxima. la vel final puede variar, q esta bien!!
     // p.ej: en la compu se ven sincronizados y en el celu no. depende del hardware y del navegador.
     // a nivel visual (para esta imagen) resulta contraproducente, pero tecnicamente es una ventaja.
