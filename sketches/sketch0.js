@@ -18,7 +18,7 @@
 // odio estar escribiendo "p." en cada palabra, porque quita fluidez (q es lo mas atractivo de p5).
 // ademas, se hace increiblemente tedioso agregarle nuevas instancias a un sketch que ya existe,
 // y probablemente si queremos agregarle instancias es porque se trata de un proyecto complejo
-// que ya tiene muchas lineas de codigo, escritas sin instancias.
+// que ya tiene muchas lineas de codigo.
 //
 // __por eso__
 // inventé este atajo que permite trabajar en ~al menos un sketch~ sin repitir "p." miles de veces.
@@ -48,7 +48,7 @@
 // asigno las palabras reservadas (de la instancia de p5) al contexto global (objeto window),
 // igual q pasa cuando se trabaja con un solo sketch. por eso no se puede repetir dos veces.
 // los demas sketches crean su propio objeto como propiedad en window, lo que los diferencia
-// de las propiedades globales (y asi mantienen sus nombres independientes)
+// de las propiedades globales (y asi mantienen sus nombres independientes).
 //
 // si o si es una mejora cosiderable respecto a las instancias multiples "normales",
 // pero me sigue pareciendo mas recomendable trabajar con iframes. aunque (como todo)
