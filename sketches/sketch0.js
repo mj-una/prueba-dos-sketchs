@@ -366,10 +366,13 @@ export const sketch0 = (p) => { // el objeto "p" se refiere a la instancia de ~e
     // esto lo expliqué en el ejemplo 2 del tutorial sobre p5 responsive:
     // https://github.com/mj-una/tutorial-p5-responsive/blob/main/sketch.js
     
+    // tiene un setTimeout para asegurar q el contenedor ya este renderizado
     const cont = document.getElementById("contenedor__sketch--" + id);
     const canv = document.getElementById("defaultCanvas" + id);
-    const contAdaptado = window.getComputedStyle(cont); // medidas finales
-    canv.style.width = contAdaptado.width;
-    canv.style.height = contAdaptado.height;
+    setTimeout( function() { // hacer asincrono
+      const contAdaptado = window.getComputedStyle(cont); // medidas finales
+      canv.style.width = contAdaptado.width;
+      canv.style.height = contAdaptado.height;
+    }, 0);
   }
 }

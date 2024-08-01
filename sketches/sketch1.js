@@ -115,8 +115,10 @@ export const sketch1 = (p) => { // "p" es la instancia de ~este~ sketch
   p.windowResized = () => {
     const canv = document.getElementById("defaultCanvas" + id);
     const cont = document.getElementById("contenedor__sketch--" + id);
-    const contAdaptado = window.getComputedStyle(cont); // medidas finales
-    canv.style.width = contAdaptado.width;
-    canv.style.height = contAdaptado.height;
+    setTimeout( function() { // hacer asincrono
+      const contAdaptado = window.getComputedStyle(cont); // medidas finales
+      canv.style.width = contAdaptado.width;
+      canv.style.height = contAdaptado.height;
+    }, 0);
   }
 }
