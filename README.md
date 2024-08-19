@@ -1,6 +1,6 @@
 # prueba-dos-sketchs
 
-NO SIRVEEEEE. Es un error pq esto ya esta resuelto de forma nativa en p5,
+NO SIRVEEEEE. Es un error pq esto ya esta resuelto de forma nativa en p5,<br>
 pero le tengo cariño a todo lo q escribi pq aprendi un monton de temas nuevas.
 
 Explicare todo en una proxima version, y hare un tutorial aparte con la forma correcta.
